@@ -54,7 +54,6 @@ class Group
     end 
 end 
 
-pp Group.all
 
 
 
