@@ -24,18 +24,21 @@ class GroupController
             "Save" => 4, 
             "Go Back" => 5
         }
-        
-        while true 
+
+        while true
+            @view.display_member_message(@model.names_array.length) 
             choice = @view.menu_selection("Please Choose:", options)
             case choice 
             when 1 
-                puts "Display group"
+                @view.display_random_group(@model.randomise_order)
             when 2 
-                puts "Add Member"
+                name = @view.input_name
+                @model.add_name(name)
             when 3
-                puts "Remove Member"
+                name = @view.input_name
+                @model.remove_name(name)
             when 4 
-                puts "Save"
+                @model.save
             when 5 
                 break
             end
@@ -55,6 +58,8 @@ class GroupController
                 puts "Create a Group"
             when 2
                 select_group
+                @view.display_group_name(@model.name)
+                group_menu
             when 3 
                 puts "goodbye"
                 break 
@@ -62,6 +67,3 @@ class GroupController
         end 
     end 
 end
-
-controller = GroupController.new 
-controller.main_menu
