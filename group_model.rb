@@ -1,4 +1,12 @@
 class Group
+
+    def self.create(name)
+        path = name.split(" ").map {|word| word.downcase}.join("-") + ".txt"
+        File.open("./groups/#{path}", "w") do |file|
+            file.write("")
+        end
+        puts "Created File" 
+    end 
     
     attr_reader :name, :file_path, :names_array
     def initialize(name, path)
@@ -29,11 +37,17 @@ class Group
     def randomise_order
         return @names_array.shuffle
     end 
+
+    def who_am_i
+        return self
+    end 
 end 
 
-group = Group.new("Test", "./groups/test-group.txt")
-group.add_name("Greg")
-pp group.randomise_order
+Group.create("the nerds")
+
+
+
+
 
 
 
