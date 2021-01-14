@@ -1,0 +1,3 @@
+class GroupController
+
+end
