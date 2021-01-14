@@ -47,5 +47,11 @@ class GroupView
         else 
             puts "There are #{length} members in the group"
         end 
-    end 
+    end
+    
+    def input_group_name
+        @prompt.ask("Please enter group name:") do |q|
+            q.required true 
+        end 
+    end
 end 

@@ -26,6 +26,7 @@ class GroupController
         }
 
         while true
+            system "clear"
             @view.display_member_message(@model.names_array.length) 
             choice = @view.menu_selection("Please Choose:", options)
             case choice 
@@ -34,9 +35,12 @@ class GroupController
             when 2 
                 name = @view.input_name
                 @model.add_name(name)
+                puts "Added #{name} to group"
+                sleep(0.5)
             when 3
                 name = @view.input_name
-                @model.remove_name(name)
+                removed = @model.remove_name(name)
+                puts removed ? "#{name} removed from group": "#{name} not found in group"
             when 4 
                 @model.save
             when 5 
@@ -55,7 +59,8 @@ class GroupController
             choice = @view.menu_selection("What would you like to do?", options)
             case choice 
             when 1 
-                puts "Create a Group"
+                name = @view.input_group_name
+                Group.create(name)
             when 2
                 select_group
                 @view.display_group_name(@model.name)

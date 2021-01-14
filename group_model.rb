@@ -5,7 +5,7 @@ class Group
         File.open("./groups/#{path}", "w") do |file|
             file.write("")
         end
-        puts "Created File" 
+        return {name: name, path: "./groups/#{path}"} 
     end 
 
     def self.all 
