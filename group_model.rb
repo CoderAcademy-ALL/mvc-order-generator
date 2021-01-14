@@ -7,6 +7,17 @@ class Group
         end
         puts "Created File" 
     end 
+
+    def self.all 
+        contents = Dir.entries("./groups").select {|file| file =~ /^.+\.txt/ }
+        contents.map do |file_name|
+            words = file_name.split("-")
+            words[-1].delete_suffix!(".txt")
+            words.map! {|word| word.capitalize}
+            {name: words.join(" "), path: "./groups/#{file_name}"}
+        end 
+
+    end 
     
     attr_reader :name, :file_path, :names_array
     def initialize(name, path)
@@ -43,37 +54,7 @@ class Group
     end 
 end 
 
-Group.create("the nerds")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+pp Group.all
 
 
 
